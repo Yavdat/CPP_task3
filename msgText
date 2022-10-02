@@ -1,0 +1,9 @@
+{System:}
+This is system!
+{/System}
+{Server:}
+192.41.23.53
+{/Server}
+{Session:}
+This is session
+{/Session}
