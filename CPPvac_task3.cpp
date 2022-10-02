@@ -29,7 +29,7 @@ class MessageType {
     //std::string tags[3] = {{"{System:}", "{/System}"}, {"{Server:}", "{/Server}"}, {"{Session:}", "{/Session}"}};
 public:
     void convertTextToMessageType(std::string text) {
-        std::cout << text << std::endl;
+        // std::cout << text << std::endl;
         int sm1 = 0, sm2 = 0;
         sm1 = text.find("{System:}"); // позиция тэга "{System:}"
         sm2 = text.find("{/System}"); // позиция тэга "{/System}"
@@ -81,7 +81,7 @@ public:
         {
             while (getline(in, line))
             {
-                std::cout<<line;
+                // std::cout<<line;
                 text.append(line);
             }
         } else {
@@ -112,8 +112,16 @@ This is session
 int main()
 {
     FileReader msgFile("./msgText");
+    std::string text = msgFile.getTextFromFile();
+    std::cout << "Text который нужно преобразовать в MessageType" << std::endl;
+    std::cout << text << std::endl << std::endl; 
+
     MessageType mt;
-    mt.convertTextToMessageType(msgFile.getTextFromFile());
+    std::cout << "Поля MessageType после преобразования текста в MessageType(тут выводим поля класса):"  << std::endl;
+    mt.convertTextToMessageType(text); // Преобразовали в MessageType и вывели содержимое
+    std::cout << std::endl;
+    
+    std::cout << "Содержимое после обратно преобразования из MessageType в Текст:" << std::endl;
     std::cout << mt.convertMessageTypeToText(mt) << std::endl; 
     // {System:}This is system!{/System}{Server:}192.41.23.53{/Server}{Session:}This is session{/Session}
     
@@ -123,3 +131,15 @@ int main()
 }
 
 /* ========================================================================== */
+/*
+Text который нужно преобразовать в MessageType
+{System:}This is system!{/System}{Server:}192.41.23.53{/Server}{Session:}This is session{/Session}
+
+Поля MessageType после преобразования текста в MessageType(тут выводим поля класса):
+This is system!
+192.41.23.53
+This is session
+
+Содержимое после обратно преобразования из MessageType в Текст:
+{System:}This is system!{/System}{Server:}192.41.23.53{/Server}{Session:}This is session{/Session}
+*/
